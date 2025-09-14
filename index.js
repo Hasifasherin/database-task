@@ -1,4 +1,4 @@
-// ---------------- IMPORT DEPENDENCIES ----------------
+// IMPORT DEPENDENCIES
 const express = require('express');
 const mongoose = require('mongoose');
 
@@ -8,21 +8,21 @@ const app = express();
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
-// ---------------- CONNECT TO MONGODB ----------------
+//  CONNECT TO MONGODB 
 mongoose.connect('mongodb://127.0.0.1:27017/postsDB')
 .then(() => console.log('✅ MongoDB connected successfully'))
 .catch(err => console.log('❌ MongoDB connection error:', err));
 
-// ---------------- CREATE SCHEMA ----------------
+//  CREATE SCHEMA
 const postSchema = new mongoose.Schema({
     title: String,
     content: String
 });
 
-// ---------------- CREATE MODEL ----------------
+//  CREATE MODEL 
 const Post = mongoose.model('Post', postSchema);
 
-// ---------------- ROUTES ----------------
+// ROUTES
 
 // i) GET all posts
 app.get('/getPosts', async (req, res) => {
@@ -75,7 +75,7 @@ app.patch('/post/:id', async (req, res) => {
     }
 });
 
-// ---------------- START SERVER ----------------
+//  START SERVER 
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
